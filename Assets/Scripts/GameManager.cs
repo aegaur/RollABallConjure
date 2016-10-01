@@ -38,6 +38,14 @@ public class GameManager : MonoBehaviour {
         player = playerObject.GetComponent<PlayerController>();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetGame(true);
+        }
+    }
+
     public void CheckGameState()
     {
         Debug.Log(player.IsDead);
@@ -81,13 +89,18 @@ public class GameManager : MonoBehaviour {
 
         }
 
-        ResetGame();
+        ResetGame(false);
 
     }
 
-    private void ResetGame()
+    private void ResetGame(bool resetPersistant)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1.0f;
+
+        if (resetPersistant)
+        {
+            PersistantValues.Instance.ResetValues();
+        }
     }
 }
