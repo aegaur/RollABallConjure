@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
     private const int NB_PICK_UP = 12;
     private const string COUNT_TEXT_BASE = "Count: ";
+    private const string DEATH_TEXT_BASE = "Death: ";
     private const string WIN_TEXT = "You win!";
     private const string LOST_TEXT = "You lost!";
 
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour {
 
 
     public Text countText;
+    public Text deathText;
     public Text globalMsgText;
     private PlayerController player;
 
@@ -29,8 +31,10 @@ public class GameManager : MonoBehaviour {
 
         globalMsgText.text = "";
         countText.text = COUNT_TEXT_BASE + "0/" + NB_PICK_UP.ToString();
+        deathText.text = DEATH_TEXT_BASE + PersistantValues.Instance.GetValue("Death Count");
+
+
         GameObject playerObject = GameObject.Find("Player");
-        System.Diagnostics.Debug.WriteLine(playerObject.name);
         player = playerObject.GetComponent<PlayerController>();
     }
 
@@ -42,6 +46,7 @@ public class GameManager : MonoBehaviour {
         if (player.IsDead)
         {
             globalMsgText.text = LOST_TEXT;
+            PersistantValues.Instance.SetValue("Death Count", PersistantValues.Instance.GetValue("Death Count") + 1);
             FreezeAndRestart();
         }
         else
