@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("PlayerStart");
         rb = GetComponent<Rigidbody>();
         count = 0;
         isDead = false;
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
         switch (other.gameObject.tag)
         {
             case "Pick Up":
@@ -55,5 +53,15 @@ public class PlayerController : MonoBehaviour
         }
 
         GameManager.Instance.CheckGameState();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision on " + collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Bumper"))
+        {
+            ContactPoint contactPoint = collision.contacts[0];
+            rb.AddForce(contactPoint.normal * speed, ForceMode.Impulse);
+        }
     }
 }
