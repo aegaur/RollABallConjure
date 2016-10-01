@@ -4,21 +4,30 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-
     public float speed;
-    public Text countText;
-    public Text winText;
 
-    private const int NB_PICK_UP = 12;
     private Rigidbody rb;
     private int count;
+    private bool isDead;
+
+
+
+    public int Count
+    {
+        get { return count; }
+    }
+
+    public bool IsDead
+    {
+        get { return isDead; }
+    }
 
     void Start()
     {
+        Debug.Log("PlayerStart");
         rb = GetComponent<Rigidbody>();
         count = 0;
-        setCountText();
-        winText.text = "";
+        isDead = false;
     }
 
     void FixedUpdate()
@@ -33,20 +42,18 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Pick Up"))
+        Debug.Log(other.gameObject.tag);
+        switch (other.gameObject.tag)
         {
-            other.gameObject.SetActive(false);
-            count++;
-            setCountText();
+            case "Pick Up":
+                other.gameObject.SetActive(false);
+                count++;
+                break;
+            case "Hole":
+                isDead = true;
+                break;
         }
-    }
-    
-    private void setCountText()
-    {
-        countText.text = "Count: " + count.ToString();
-        if(count >= NB_PICK_UP)
-        {
-            winText.text = "You Win!";
-        }
+
+        GameManager.Instance.CheckGameState();
     }
 }
