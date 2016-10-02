@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-    private const int NB_PICK_UP = 12;
+    private int NB_PICK_UP;
     private const string COUNT_TEXT_BASE = "Count: ";
     private const string DEATH_TEXT_BASE = "Death: ";
     private const string WIN_TEXT = "You win!";
@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour {
         {
             Instance = this;
         }
+
+        GameObject pickUpsContainer = GameObject.Find("Pick Ups");
+        NB_PICK_UP = pickUpsContainer.transform.childCount;
 
         globalMsgText.text = "";
         countText.text = COUNT_TEXT_BASE + "0/" + NB_PICK_UP.ToString();
