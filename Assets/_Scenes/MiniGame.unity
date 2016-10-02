@@ -220,7 +220,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &111643244
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +389,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  magicPickupDropTime: 3
+  magicPickUp: {fileID: 1000012538397536, guid: 854b114c3de128b4d98bc8ff4ecb7eac,
+    type: 2}
 --- !u!1 &150802142
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,11 +508,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c455996f6e6b49d418895f41b5216202, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: c455996f6e6b49d418895f41b5216202, type: 3}
       propertyPath: m_Name
       value: Mister Bad Guy
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: c455996f6e6b49d418895f41b5216202, type: 3}
+      propertyPath: m_TagString
+      value: MrBadGuy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c455996f6e6b49d418895f41b5216202, type: 3}
@@ -822,7 +829,7 @@ RectTransform:
   - {fileID: 191948874}
   - {fileID: 1369436859}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -917,7 +924,7 @@ Transform:
   - {fileID: 750499754}
   - {fileID: 1394408127}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1 &305515222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,7 +1531,7 @@ Transform:
   - {fileID: 305515223}
   - {fileID: 345026975}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!4 &504039094 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013249206006, guid: 74e762a26e40b9b43b909eea1f9eecb3,
@@ -1609,7 +1616,7 @@ Transform:
   - {fileID: 1749292205}
   - {fileID: 198209293}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1001 &607398296
 Prefab:
   m_ObjectHideFlags: 0
@@ -1957,7 +1964,7 @@ Transform:
   - {fileID: 2137708799}
   - {fileID: 1023305586}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!4 &983589288 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000014215427074, guid: 2ee29a981b6c45a4785940d86e877933,
@@ -2103,7 +2110,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
 --- !u!4 &1023305586 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013249206006, guid: 74e762a26e40b9b43b909eea1f9eecb3,
@@ -2464,7 +2471,7 @@ Transform:
   - {fileID: 1008368423}
   - {fileID: 320540671}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1001 &1258556452
 Prefab:
   m_ObjectHideFlags: 0

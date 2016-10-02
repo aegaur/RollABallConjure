@@ -57,11 +57,21 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision on " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Bumper"))
         {
             ContactPoint contactPoint = collision.contacts[0];
             rb.AddForce(contactPoint.normal * speed, ForceMode.Impulse);
+        }
+        switch (collision.gameObject.tag)
+        {
+            case "Bumper":
+                ContactPoint contactPoint = collision.contacts[0];
+                rb.AddForce(contactPoint.normal * speed, ForceMode.Impulse);
+                break;
+            case "MrBadGuy":
+                isDead = true;
+                GameManager.Instance.CheckGameState();
+                break;
         }
     }
 }
