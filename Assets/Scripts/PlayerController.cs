@@ -5,6 +5,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    public GameObject core;
 
     private Rigidbody rb;
     private int count;
@@ -41,27 +42,33 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        bool checkState = false;
         switch (other.gameObject.tag)
         {
             case "Pick Up":
                 other.gameObject.SetActive(false);
                 count++;
+                checkState = true;
+                break;
+            case "Magic Pickup":
+                core.GetComponent<Renderer>().material.color = other.gameObject.GetComponent<Renderer>().material.color;
+                other.gameObject.SetActive(false);
                 break;
             case "Hole":
                 isDead = true;
+                checkState = true;
                 break;
         }
 
-        GameManager.Instance.CheckGameState();
+        if (checkState)
+        {
+            GameManager.Instance.CheckGameState();
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bumper"))
-        {
-            ContactPoint contactPoint = collision.contacts[0];
-            rb.AddForce(contactPoint.normal * speed, ForceMode.Impulse);
-        }
+        bool checkState = false;
         switch (collision.gameObject.tag)
         {
             case "Bumper":
@@ -71,7 +78,13 @@ public class PlayerController : MonoBehaviour
             case "MrBadGuy":
                 isDead = true;
                 GameManager.Instance.CheckGameState();
+                checkState = true;
                 break;
+        }
+
+        if (checkState)
+        {
+            GameManager.Instance.CheckGameState();
         }
     }
 }

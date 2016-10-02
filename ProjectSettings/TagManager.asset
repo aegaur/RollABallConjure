@@ -8,6 +8,7 @@ TagManager:
   - Hole
   - Bumper
   - MrBadGuy
+  - Magic Pickup
   layers:
   - Default
   - TransparentFX
